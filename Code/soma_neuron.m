@@ -4,7 +4,6 @@ function [V_new, n_new, h_new, I_trans, g_GABA_A_bar, I_trans_PS] = soma_neuron(
     g_Na_bar = g_Na*(m_ss(V_s + V_offset)^2)*h;
     g_K_d_bar = g_K_d*n;
     g_GABA_A_bar = g_GABA_A*(1 - exp(-GABA_spike_dist/2))*exp(-GABA_spike_dist/50);
-%     g_GABA_ton_bar = g_GABA_ton*(1 - exp(-GABA_spike_dist/200))*exp(-GABA_spike_dist/1000);
     g_GABA_ton_bar = g_GABA_ton;
     
     num_synapses = length(synapse_spike_vec);
@@ -57,10 +56,6 @@ end
 function mss = m_ss(Vs)
     mss = alphaM(Vs)/(alphaM(Vs) + betaM(Vs));
 end
-
-% function mtau = m_tau(Vs)
-%     mtau = 1/(alphaM(Vs) + betaM(Vs));
-% end
 
 % % Parameters for steady state functions
 
